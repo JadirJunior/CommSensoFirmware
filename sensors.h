@@ -18,7 +18,7 @@ struct ResponseMeasure {
 };
 
 const int TEMPERATURE_PIN = 15;
-const int UMIDITY_PIN = 4;
+const int UMIDITY_PIN = 33;
 
 int analogDry = 4095; //Solo Seco
 int analogWet = 1800; //Solo Molhado

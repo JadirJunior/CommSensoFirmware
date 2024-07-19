@@ -71,7 +71,7 @@ void handleMeasure(void *pvParameters) {
   while (1) {
     Serial.println("Realizando a leitura dos dados...");
     ResponseMeasure response = getUmidity();
-    //sendData(response.value, response.sensorId);
+    sendData(response.value, response.idSensor);
     response = getTemperature();
     sendData(response.value, response.idSensor);
     delay(INTERVAL);
