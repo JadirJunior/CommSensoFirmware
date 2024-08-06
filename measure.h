@@ -70,10 +70,68 @@ void handleMeasure(void *pvParameters) {
 
   while (1) {
     Serial.println("Realizando a leitura dos dados...");
-    ResponseMeasure response = getUmidity();
-    sendData(response.value, response.idSensor);
-    response = getTemperature();
-    sendData(response.value, response.idSensor);
+
+    ResponseMeasure umidity = getMeasure(umid, 100, sensorsIds::UMIDITY);
+    Serial.print("Umidade: ");
+    Serial.print(umidity.value);
+    Serial.println(" %");
+
+    sendData(umidity.value, umidity.idSensor);
+
+    delay(1000);
+
+    ResponseMeasure temperature = getMeasure(temp, 100, sensorsIds::TEMPERATURE);
+    Serial.print("Temperatura: ");
+    Serial.print(temperature.value);
+    Serial.println(" ºC");
+
+    sendData(temperature.value, temperature.idSensor);
+
+    delay(1000);
+
+    ResponseMeasure nitrogen = getMeasure(nitro, 1, sensorsIds::NITROGEN);
+    Serial.print("Nitrogênio: ");
+    Serial.print(nitrogen.value);
+    Serial.println("  mg/kg");
+
+    sendData(nitrogen.value, nitrogen.idSensor);
+
+
+    delay(1000);
+
+    ResponseMeasure phosp = getMeasure(phos, 1, sensorsIds::PHOSPHORUS);
+    Serial.print("Fósforo: ");
+    Serial.print(phosp.value);
+    Serial.println("  mg/kg");
+    sendData(phosp.value, phosp.idSensor);
+
+    delay(1000);
+
+
+    ResponseMeasure phValue = getMeasure(Ph, 10, sensorsIds::PH);
+    Serial.print("Ph: ");
+    Serial.println(phValue.value);
+    sendData(phValue.value, phValue.idSensor);
+
+    delay(1000);
+
+
+    ResponseMeasure condValue = getMeasure(cond, 1, sensorsIds::CONDUCTIVITY);
+    Serial.print("Condutividade: ");
+    Serial.print(condValue.value);
+    Serial.println(" uS");
+    sendData(condValue.value, condValue.idSensor);
+
+    delay(1000);
+
+
+    ResponseMeasure potassio = getMeasure(phota, 1, sensorsIds::POTASSIUM);
+    Serial.print("Potássio: ");
+    Serial.print(potassio.value);
+    Serial.println(" mg/kg");
+    sendData(potassio.value, potassio.idSensor);
+
+
     delay(INTERVAL);
   }
 }
@@ -83,7 +141,7 @@ void handleMeasure(void *pvParameters) {
 
 void registerTask() {
   setupSensors();
-  xTaskCreatePinnedToCore(handleMeasure, "read-measures", 10000, NULL, 3, &readMeasuresTask, 0);
+  xTaskCreatePinnedToCore(handleMeasure, "read-measures", 10000, NULL, 5, &readMeasuresTask, 1);
   vTaskSuspend(readMeasuresTask);
   
 }
@@ -97,6 +155,7 @@ void startMeasures() {
 void stopMeasures() {
   if (Measuring) {
     vTaskSuspend(readMeasuresTask);
+    Measuring = false;
   }
 }
 

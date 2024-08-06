@@ -6,7 +6,7 @@
 #include <AsyncTCP.h>
 
 
-const char* mqtt_server = "192.168.1.106";
+const char* mqtt_server = "192.168.1.104";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -67,6 +67,7 @@ void configureMqttServer() {
 
     client.setServer(mqtt_server, 1883);
     client.setCallback(callback);
+    client.setKeepAlive(60);
 }
 
 
