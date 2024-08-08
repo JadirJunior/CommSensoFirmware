@@ -11,11 +11,12 @@
 | potassio        | `{0x01, 0x03, 0x02, 0x06, 0x00, 0x01, 0x00, 0x00}` |
 
 
-## Mapeamento de Pinos
+## Mapeamento de pinos
 
-| Nome    | Pino | Tipo   | Descrição                                                                                   |
-|---------|------|--------|---------------------------------------------------------------------------------------------|
-| RE      | 19   | OUTPUT | Pino RE do módulo RS485, podendo ser qualquer GPIO do ESP                                    |
-| DE      | 18   | OUTPUT | Pino DE do módulo RS485, podendo ser qualquer GPIO do ESP                                    |
-| PIN_RX  | 16   | INPUT  | Pino RX do ESP conectado ao RO do módulo para receber os dados                               |
-| PIN_TX  | 17   | OUTPUT | Pino TX do ESP conectado ao DI do módulo para enviar os dados                                |
+| Nome | Pino | Tipo   | Descrição                                     |
+|------|------|--------|-----------------------------------------------|
+| RE   | 19   | OUTPUT | Pino RE do módulo RS485, podendo ser qualquer GPIO do ESP |
+| DE   | 18   | OUTPUT | Pino DE do módulo RS485, podendo ser qualquer GPIO do ESP |
+| RO   | RX2  | INPUT  | Pino para o ESP receber os dados              |
+| DI   | TX2  | OUTPUT | Pino para o ESP enviar os dados               |
+
