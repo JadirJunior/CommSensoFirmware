@@ -6,7 +6,7 @@
 #include <AsyncTCP.h>
 
 
-const char* mqtt_server = "192.168.1.104";
+const char* mqtt_server = "192.168.1.103";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
